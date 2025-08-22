@@ -1,4 +1,4 @@
-package com.example.londoncaptask.ui.theme
+package com.example.core.presentation.designsystem
 
 import androidx.compose.ui.graphics.Color
 

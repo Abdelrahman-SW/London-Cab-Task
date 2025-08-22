@@ -21,4 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "London Cap Task"
 include(":app")
- 
+include(":core")
+include(":auth")
+include(":tasks")
