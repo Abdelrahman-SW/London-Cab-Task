@@ -11,7 +11,7 @@ import com.example.auth.domain.AuthStorage
 import com.example.auth.domain.User
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
-import com.example.core.presentation.ui.asUiText
+import com.example.core.presentation.util.asUiText
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
