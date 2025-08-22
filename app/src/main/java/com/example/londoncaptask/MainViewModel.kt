@@ -5,12 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.auth.domain.AuthStorage
+import com.example.core.domain.AuthStorage
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val sessionStorage: AuthStorage
-): ViewModel() {
+) : ViewModel() {
 
     var state by mutableStateOf(MainState())
         private set
@@ -22,6 +22,12 @@ class MainViewModel(
                 isLoggedIn = sessionStorage.get() != null
             )
             state = state.copy(isCheckingAuth = false)
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            sessionStorage.set(null)
         }
     }
 }
