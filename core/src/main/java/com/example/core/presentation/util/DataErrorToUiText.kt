@@ -1,7 +1,8 @@
-package com.example.core.presentation.ui
+package com.example.core.presentation.util
 
 import com.example.core.R
 import com.example.core.domain.util.DataError
+import com.example.core.presentation.ui.UiText
 
 fun DataError.asUiText(): UiText {
     return when(this) {

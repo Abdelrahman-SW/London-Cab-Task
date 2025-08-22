@@ -19,7 +19,7 @@ class AuthRepositoryKtorImpl(
         password: String
     ): Result<User, DataError.Network> {
         return client.post<LoginRequestBody, UserDto>(
-            route = "/",
+            route = "auth/login",
             body = LoginRequestBody(username, password)
         ).map { it.toUser() }
     }
