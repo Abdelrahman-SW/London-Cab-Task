@@ -5,10 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.auth.domain.AuthInfo
+import com.example.core.domain.models.AuthInfo
 import com.example.auth.domain.AuthRepository
-import com.example.auth.domain.AuthStorage
-import com.example.auth.domain.User
+import com.example.core.domain.AuthStorage
+import com.example.auth.domain.models.User
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.presentation.util.asUiText
@@ -57,6 +57,9 @@ class LoginViewModel(
             )
             when (result) {
                 is Result.Error<DataError.Network> -> {
+                    state = state.copy(
+                        isLogging = false
+                    )
                     _events.trySend(LoginScreenEvent.Error(result.error.asUiText()))
                 }
                 is Result.Success<User> -> {

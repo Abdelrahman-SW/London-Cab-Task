@@ -1,4 +1,4 @@
-package com.example.core.presentation.util
+package com.example.core.presentation.util.ext
 
 import android.content.Context
 import android.widget.Toast

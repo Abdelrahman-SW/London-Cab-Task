@@ -1,4 +1,4 @@
-package com.example.core.data.networking
+package com.example.core.data.networking.ext
 
 import com.example.core.BuildConfig
 import com.example.core.domain.util.DataError
@@ -77,6 +77,7 @@ suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, 
 suspend inline fun <reified T> responseToResult(response: HttpResponse): Result<T, DataError.Network> {
     return when (response.status.value) {
         in 200..299 -> Result.Success(response.body<T>())
+        400 -> Result.Error(DataError.Network.INVALID_CREDENTIALS)
         401 -> Result.Error(DataError.Network.UNAUTHORIZED)
         408 -> Result.Error(DataError.Network.REQUEST_TIMEOUT)
         409 -> Result.Error(DataError.Network.CONFLICT)

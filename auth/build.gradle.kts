@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -49,7 +50,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // ktor
-    implementation(libs.bundles.ktor)
+    api(libs.bundles.ktor)
 
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))

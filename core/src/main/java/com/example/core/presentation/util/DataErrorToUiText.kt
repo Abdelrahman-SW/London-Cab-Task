@@ -6,6 +6,7 @@ import com.example.core.presentation.ui.UiText
 
 fun DataError.asUiText(): UiText {
     return when(this) {
+
         DataError.Local.DISK_FULL -> UiText.StringResource(
             R.string.error_disk_full
         )
@@ -23,6 +24,9 @@ fun DataError.asUiText(): UiText {
         )
         DataError.Network.SERVER_ERROR -> UiText.StringResource(
             R.string.error_server_error
+        )
+        DataError.Network.INVALID_CREDENTIALS -> UiText.StringResource(
+            R.string.invalid_credentials
         )
         DataError.Network.SERIALIZATION -> UiText.StringResource(
             R.string.error_serialization

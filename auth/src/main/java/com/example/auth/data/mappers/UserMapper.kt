@@ -1,7 +1,7 @@
 package com.example.auth.data.mappers
 
 import com.example.auth.data.dto.UserDto
-import com.example.auth.domain.User
+import com.example.auth.domain.models.User
 
 fun UserDto.toUser () : User {
     return User(
