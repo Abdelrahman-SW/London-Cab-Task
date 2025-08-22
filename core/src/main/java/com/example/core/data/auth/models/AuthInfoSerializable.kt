@@ -1,7 +1,6 @@
-package com.example.auth.data
+package com.example.core.data.auth.models
 
 import kotlinx.serialization.Serializable
-
 
 @Serializable
 data class AuthInfoSerializable(

@@ -1,5 +1,6 @@
 package com.example.auth.domain
 
+import com.example.auth.domain.models.User
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 

@@ -4,12 +4,13 @@ import com.example.auth.data.dto.LoginRequestBody
 import com.example.auth.data.dto.UserDto
 import com.example.auth.data.mappers.toUser
 import com.example.auth.domain.AuthRepository
-import com.example.auth.domain.User
-import com.example.core.data.networking.post
+import com.example.auth.domain.models.User
+import com.example.core.data.networking.ext.post
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.domain.util.map
 import io.ktor.client.HttpClient
+import kotlinx.coroutines.delay
 
 class AuthRepositoryKtorImpl(
     private val client: HttpClient,
@@ -26,6 +27,7 @@ class AuthRepositoryKtorImpl(
 
     override suspend fun logout(): Result<Unit, DataError.Network> {
         // assume that we hit the server to logout and it respond with success
+        delay(500L)
         return Result.Success(Unit)
     }
 

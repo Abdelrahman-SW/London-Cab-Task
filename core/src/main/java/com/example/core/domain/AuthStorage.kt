@@ -1,4 +1,6 @@
-package com.example.auth.domain
+package com.example.core.domain
+
+import com.example.core.domain.models.AuthInfo
 
 interface AuthStorage {
     suspend fun get(): AuthInfo?

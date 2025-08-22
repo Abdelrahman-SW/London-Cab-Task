@@ -1,7 +1,7 @@
-package com.example.auth.data.mappers
+package com.example.core.data.auth.mappers
 
-import com.example.auth.data.AuthInfoSerializable
-import com.example.auth.domain.AuthInfo
+import com.example.core.data.auth.models.AuthInfoSerializable
+import com.example.core.domain.models.AuthInfo
 
 fun AuthInfoSerializable.toAuthInfo() : AuthInfo {
     return AuthInfo(

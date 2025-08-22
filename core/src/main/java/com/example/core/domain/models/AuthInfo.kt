@@ -1,4 +1,4 @@
-package com.example.auth.domain
+package com.example.core.domain.models
 
 data class AuthInfo(
     val accessToken: String,
