@@ -28,10 +28,15 @@ android {
             )
 
             buildConfigField("String", "BASE_URL", "\"${project.properties["BASE_URL_PROD"]}\"")
+            buildConfigField("String", "SERVER_CERT_PIN", "\"${project.properties["CERT_PIN"]}\"")
+            buildConfigField("String", "SERVER_DOMAIN", "\"${project.properties["SERVER_DOMAIN"]}\"")
         }
 
         debug {
             buildConfigField("String", "BASE_URL", "\"${project.properties["BASE_URL_DEV"]}\"")
+            buildConfigField("String", "SERVER_CERT_PIN", "\"${project.properties["CERT_PIN"]}\"")
+            buildConfigField("String", "SERVER_DOMAIN", "\"${project.properties["SERVER_DOMAIN"]}\"")
+
 
         }
     }
