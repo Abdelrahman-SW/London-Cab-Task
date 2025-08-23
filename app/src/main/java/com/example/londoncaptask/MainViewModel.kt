@@ -1,5 +1,6 @@
 package com.example.londoncaptask
 
+import android.opengl.Visibility
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -37,5 +38,9 @@ class MainViewModel(
         viewModelScope.launch {
             sessionStorage.set(null)
         }
+    }
+
+    fun setAnalyticsDialogVisibility (visibility: Boolean) {
+        state = state.copy(showAnalyticsInstallDialog = visibility)
     }
 }

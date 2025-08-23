@@ -33,7 +33,8 @@ import org.koin.androidx.compose.koinViewModel
 fun TasksListScreenRoot(
     modifier: Modifier = Modifier,
     onNavigateToUpsertTask: (Int) -> Unit,
-    taskListViewModel: TasksListViewModel = koinViewModel()
+    taskListViewModel: TasksListViewModel = koinViewModel(),
+    onOpenAnalyticsPageButtonClicked: () -> Unit
 ) {
     val context = LocalContext.current
 
@@ -52,6 +53,7 @@ fun TasksListScreenRoot(
         modifier = modifier,
         tasksListScreenState = taskListViewModel.state,
         onAction = taskListViewModel::onAction,
+        onOpenAnalyticsPageButtonClicked = onOpenAnalyticsPageButtonClicked
     )
 }
 
@@ -60,7 +62,8 @@ fun TasksListScreenRoot(
 fun TaskListScreen(
     modifier: Modifier = Modifier,
     tasksListScreenState: TasksListScreenState,
-    onAction: (TasksListScreenAction) -> Unit
+    onAction: (TasksListScreenAction) -> Unit,
+    onOpenAnalyticsPageButtonClicked: () -> Unit
 ) {
 
     val pullToRefreshState = rememberPullToRefreshState()
@@ -73,14 +76,31 @@ fun TaskListScreen(
         onRefresh = { onAction(TasksListScreenAction.OnPullToRefresh) }
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(bottom = 16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 16.dp, top = 16.dp)
         ) {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+                    .height(56.dp),
+                onClick = {
+                    onOpenAnalyticsPageButtonClicked()
+                }
+            ) {
+                Text("Open Analytics Page")
+            }
+
             LazyColumn(
-                modifier = Modifier.fillMaxWidth().weight(1f),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
                 contentPadding = PaddingValues(24.dp),
-                verticalArrangement = Arrangement.spacedBy(24.dp) ,
+                verticalArrangement = Arrangement.spacedBy(24.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
                 if (tasksListScreenState.tasks.isEmpty() && !tasksListScreenState.isRefreshing) {
                     item {
                         Box(
