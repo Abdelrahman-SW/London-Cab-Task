@@ -1,7 +1,9 @@
 package com.example.londoncaptask
 
 import android.app.Application
+import android.content.Context
 import com.example.londoncaptask.di.appModule
+import com.google.android.play.core.splitcompat.SplitCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import org.koin.android.ext.koin.androidContext
@@ -20,5 +22,10 @@ class MyApp : Application() {
             workManagerFactory()
             modules(appModule)
         }
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        SplitCompat.install(this)
     }
 }
