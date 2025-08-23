@@ -67,6 +67,7 @@ dependencies {
 
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.security.crypto)
+    implementation(libs.koin.androidx.workmanager)
 
 
 }
