@@ -39,6 +39,7 @@ class TaskSyncSchedulerWorkManagerImpl(
                 duration = 30,
                 timeUnit = java.util.concurrent.TimeUnit.MINUTES
             )
+            .addTag(TaskSyncScheduler.TASK_SYNC_TAG)
             .build()
         workManager.enqueue(workRequest).await()
     }

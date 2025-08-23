@@ -36,6 +36,7 @@ class DailyNotificationWorkManagerImpl(
                 duration = 15,
                 timeUnit = java.util.concurrent.TimeUnit.MINUTES
             )
+            .addTag(DailyNotificationScheduler.DAILY_NOTIFICATION_TAG)
             .build()
         workManager.enqueue(workRequest).await()
     }
