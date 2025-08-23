@@ -31,6 +31,9 @@ fun DataError.asUiText(): UiText {
         DataError.Network.SERIALIZATION -> UiText.StringResource(
             R.string.error_serialization
         )
+        DataError.Network.EXCEED_REQUEST_LIMIT -> UiText.StringResource(
+            R.string.error_exceed_limit
+        )
         else -> UiText.StringResource(R.string.error_unknown)
     }
 }
