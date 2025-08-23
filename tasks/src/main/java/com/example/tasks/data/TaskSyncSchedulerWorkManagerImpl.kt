@@ -1,19 +1,15 @@
 package com.example.tasks.data
 
 import android.content.Context
-import android.icu.util.TimeUnit
-import androidx.compose.ui.unit.Constraints
 import androidx.work.BackoffPolicy
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.await
-import com.example.tasks.domain.TaskRepository
 import com.example.tasks.domain.TaskSyncScheduler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.minutes
 import kotlin.time.toJavaDuration
 
 class TaskSyncSchedulerWorkManagerImpl(
@@ -25,7 +21,7 @@ class TaskSyncSchedulerWorkManagerImpl(
     override suspend fun scheduleSyncingTask(duration: Duration) {
         val isSyncScheduled = withContext(Dispatchers.IO) {
             workManager
-                .getWorkInfosByTag(TaskSyncScheduler.TaskSyncSchedulerTag).get().isNotEmpty()
+                .getWorkInfosByTag(TaskSyncScheduler.TASK_SYNC_TAG).get().isNotEmpty()
         }
         if (isSyncScheduled) return
         val workRequest = PeriodicWorkRequestBuilder<FetchTasksWorker>(
@@ -49,7 +45,7 @@ class TaskSyncSchedulerWorkManagerImpl(
 
     override suspend fun cancelSyncingTask() {
         WorkManager.getInstance(context = context)
-            .cancelAllWorkByTag(TaskSyncScheduler.TaskSyncSchedulerTag).await()
+            .cancelAllWorkByTag(TaskSyncScheduler.TASK_SYNC_TAG).await()
     }
 
 }
