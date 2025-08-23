@@ -18,6 +18,10 @@ class RoomLocalTaskDataSourceImpl(
         return dao.getAllTasks().map { it.map { taskEntity -> taskEntity.toTask() } }
     }
 
+    override suspend fun getTaskById(id: Int): Task {
+        return dao.getTaskById(id).toTask()
+    }
+
     override suspend fun upsertTask(task: Task): Result<Unit, DataError.Local> {
         return try {
             dao.upsertTask(task.toTaskEntity())
@@ -34,5 +38,9 @@ class RoomLocalTaskDataSourceImpl(
         } catch (e: SQLiteFullException) {
             Result.Error(DataError.Local.DISK_FULL)
         }
+    }
+
+    override suspend fun deleteAllTasks() {
+        dao.deleteAllTasks()
     }
 }

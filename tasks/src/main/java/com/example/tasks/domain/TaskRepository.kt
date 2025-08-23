@@ -8,5 +8,6 @@ import kotlinx.coroutines.flow.Flow
 interface TaskRepository {
     suspend fun fetchTasks () : Result<Unit , DataError>
     fun getAllTasks() : Flow<List<Task>>
+    suspend fun getTaskById(id : Int) : Task
     suspend fun upsertTask(task: Task) : Result<Unit, DataError>
 }

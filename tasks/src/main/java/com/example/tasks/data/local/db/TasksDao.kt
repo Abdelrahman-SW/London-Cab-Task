@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TasksDao {
 
+    @Query("Select * from Tasks where id = :id")
+    suspend fun getTaskById (id : Int) : TaskEntity
+
     @Query("Select * from Tasks")
     fun getAllTasks(): Flow<List<TaskEntity>>
 
@@ -18,5 +21,8 @@ interface TasksDao {
     // needed to update the db with the new fetched data from the server
     @Upsert
     suspend fun upsertTasks(task: List<TaskEntity>)
+
+    @Query("Delete from Tasks")
+    suspend fun deleteAllTasks()
 
 }
