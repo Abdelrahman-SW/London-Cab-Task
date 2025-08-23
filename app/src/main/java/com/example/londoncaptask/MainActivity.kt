@@ -16,11 +16,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.auth.presentation.LoginScreenRoot
 import com.example.core.presentation.designsystem.LondonCapTaskTheme
+import com.example.tasks.presentation.tasks_list.TasksListScreenRoot
+import com.example.tasks.presentation.upsert_tasks.UpsertTaskScreenRoot
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -38,8 +42,7 @@ class MainActivity : ComponentActivity() {
                         ) {
                             CircularProgressIndicator()
                         }
-                    }
-                    else {
+                    } else {
                         val navController = rememberNavController()
                         NavHost(
                             modifier = Modifier.padding(innerPadding),
@@ -58,18 +61,23 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             composable("Tasks") {
-                                Button(
-                                    onClick = {
-                                        viewModel.logout()
-                                        navController.navigate("Login") {
-                                            popUpTo("Tasks") {
-                                                inclusive = true
-                                            }
+                                TasksListScreenRoot(
+                                    onNavigateToUpsertTask = {
+                                        navController.navigate("UpsertTasks/$it")
+                                    },
+                                )
+                            }
+
+                            composable(
+                                route = "UpsertTasks/{taskId}",
+                                arguments = listOf(navArgument("taskId") { type = NavType.IntType })
+                            ) { backStackEntry ->
+                               // val id = backStackEntry.arguments?.getInt("taskId") ?: -1
+                                UpsertTaskScreenRoot(
+                                    onTaskUpserted = {
+                                        navController.navigateUp()
                                         }
-                                    }
-                                ) {
-                                    Text("Logout")
-                                }
+                                )
                             }
                         }
                     }

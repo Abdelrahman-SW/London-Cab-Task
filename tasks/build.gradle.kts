@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlin.serialization)
 
 }
 
@@ -32,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures{
+        compose = true
+    }
 }
 
 dependencies {
@@ -40,12 +45,18 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     // room
-    implementation(libs.room.runtime)
+    api(libs.room.runtime)
     // ktor
     implementation(libs.bundles.ktor)
-    implementation(libs.room.ktx)
+    api(libs.room.ktx)
     ksp(libs.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.koin.compose)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
 }

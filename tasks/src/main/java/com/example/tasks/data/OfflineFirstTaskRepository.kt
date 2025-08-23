@@ -9,6 +9,7 @@ import com.example.tasks.domain.TaskRepository
 import com.example.tasks.domain.models.Task
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -17,6 +18,7 @@ class OfflineFirstTaskRepository(
     private val remoteTasksDataSource: RemoteTasksDataSource,
     private val applicationScope: CoroutineScope,
 ) : TaskRepository {
+
     override suspend fun fetchTasks(): Result<Unit, DataError> {
         return when (val result = remoteTasksDataSource.getAllTasks()) {
             is Result.Error<DataError.Network> -> {
@@ -25,6 +27,7 @@ class OfflineFirstTaskRepository(
             is Result.Success<List<Task>> -> {
                 // update db
                 applicationScope.async {
+                    localTasksDataSource.deleteAllTasks()
                     localTasksDataSource.upsertTasks(result.data)
                 }.await()
             }
@@ -36,11 +39,16 @@ class OfflineFirstTaskRepository(
         return localTasksDataSource.getAllTasks()
     }
 
+    override suspend fun getTaskById(id: Int): Task {
+        return localTasksDataSource.getTaskById(id)
+    }
+
     override suspend fun upsertTask(task: Task): Result<Unit, DataError> {
         val localResult = localTasksDataSource.upsertTask(task)
         if (localResult !is Result.Success) {
             return localResult
         }
+        // sync it with the server
         val remoteResult = remoteTasksDataSource.postTask(task)
         if (remoteResult !is Result.Success) {
             // should schedule work manager to try sync it later
