@@ -37,6 +37,7 @@ android {
     buildFeatures {
         compose = true
     }
+    dynamicFeatures += setOf(":analytics")
 }
 
 dependencies {
@@ -44,7 +45,7 @@ dependencies {
     // depend on all other modules
     implementation(project(":auth"))
     implementation(project(":tasks"))
-    implementation(project(":core"))
+    api(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -71,4 +72,5 @@ dependencies {
 
     debugImplementation (libs.leakcanary.android)
 
+    api(libs.play.feature.delivery.ktx)
 }
