@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">London Cap Task</string>
+    <string name="title_analytics">Analytics</string>
+    <string name="error_couldnt_load_module">Cannot Load The Module</string>
+    <string name="analytics_installed">The Module Is Installed</string>
+    <string name="error_installation_failed">Error Installtion Failed !</string>
+    <string name="installing_module">The Module is Installing ... , Please Wait</string>
 </resources>
