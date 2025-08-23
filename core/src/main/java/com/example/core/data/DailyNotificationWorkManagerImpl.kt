@@ -2,7 +2,6 @@ package com.example.core.data
 
 import android.content.Context
 import androidx.work.BackoffPolicy
-import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.await
@@ -21,7 +20,7 @@ class DailyNotificationWorkManagerImpl(
     override suspend fun scheduleDailyNotification(duration: Duration) {
         val isSyncScheduled = withContext(Dispatchers.IO) {
             workManager
-                .getWorkInfosByTag(DailyNotificationScheduler.DailyNotificationSchedulerTag).get()
+                .getWorkInfosByTag(DailyNotificationScheduler.DAILY_NOTIFICATION_TAG).get()
                 .isNotEmpty()
         }
         if (isSyncScheduled) return
@@ -43,7 +42,7 @@ class DailyNotificationWorkManagerImpl(
 
     override suspend fun cancelDailyNotification() {
         WorkManager.getInstance(context = context)
-            .cancelAllWorkByTag(DailyNotificationScheduler.DailyNotificationSchedulerTag).await()
+            .cancelAllWorkByTag(DailyNotificationScheduler.DAILY_NOTIFICATION_TAG).await()
     }
 
 }

@@ -7,6 +7,6 @@ interface TaskSyncScheduler {
     suspend fun cancelSyncingTask ()
 
     companion object {
-        const val TaskSyncSchedulerTag = "taskSync"
+        const val TASK_SYNC_TAG = "taskSync"
     }
 }
