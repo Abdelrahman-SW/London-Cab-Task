@@ -69,5 +69,6 @@ dependencies {
     implementation(libs.androidx.security.crypto)
     implementation(libs.koin.androidx.workmanager)
 
+    debugImplementation (libs.leakcanary.android)
 
 }
