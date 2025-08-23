@@ -10,14 +10,17 @@ import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.presentation.util.asUiText
 import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.TaskSyncScheduler
 import com.example.tasks.presentation.tasks_list.TasksListScreenEvent.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.minutes
 
 class TasksListViewModel(
-    private val taskRepository: TaskRepository
+    private val taskRepository: TaskRepository,
+    private val taskSyncScheduler: TaskSyncScheduler
 ) : ViewModel() {
 
     var state by mutableStateOf(TasksListScreenState())
@@ -28,8 +31,14 @@ class TasksListViewModel(
 
 
     init {
+
         // fetch tasks from the server
         fetchTasks()
+
+        // schedule periodic syncing
+        viewModelScope.launch {
+            taskSyncScheduler.scheduleSyncingTask(30.minutes)
+        }
 
         viewModelScope.launch {
             taskRepository.getAllTasks().collect {
