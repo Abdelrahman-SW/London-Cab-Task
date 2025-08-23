@@ -14,6 +14,7 @@ import com.example.core.data.auth.AuthStorageEncryptedSharedPrefsImpl
 import com.example.core.data.networking.HttpClientFactory
 import com.example.londoncaptask.MainViewModel
 import com.example.londoncaptask.MyApp
+import com.example.tasks.data.FetchTasksWorker
 import com.example.tasks.data.OfflineFirstTaskRepository
 import com.example.tasks.data.local.RoomLocalTaskDataSourceImpl
 import com.example.tasks.data.local.db.TaskDb
@@ -25,6 +26,7 @@ import com.example.tasks.domain.TaskRepository
 import com.example.tasks.presentation.upsert_tasks.UpsertTaskViewModel
 import kotlinx.coroutines.CoroutineScope
 import org.koin.android.ext.koin.androidApplication
+import org.koin.androidx.workmanager.dsl.workerOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
@@ -85,4 +87,6 @@ val appModule = module {
     single<TasksDao> {
         get<TaskDb>().taskDao()
     }
+
+    workerOf(::FetchTasksWorker)
 }
