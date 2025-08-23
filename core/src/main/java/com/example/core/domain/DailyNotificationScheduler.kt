@@ -7,6 +7,6 @@ interface DailyNotificationScheduler {
     suspend fun cancelDailyNotification ()
 
     companion object {
-        const val DailyNotificationSchedulerTag = "daily_notification"
+        const val DAILY_NOTIFICATION_TAG = "daily_notification"
     }
 }
