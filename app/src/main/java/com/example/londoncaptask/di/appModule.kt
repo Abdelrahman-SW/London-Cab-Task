@@ -8,14 +8,18 @@ import androidx.security.crypto.MasterKey
 import com.example.auth.data.AuthRepositoryKtorImpl
 import com.example.auth.domain.AuthRepository
 import com.example.auth.presentation.LoginViewModel
+import com.example.core.data.DailyNotificationWorkManagerImpl
+import com.example.core.data.DailyNotificationWorker
 import com.example.core.domain.AuthStorage
 import com.example.tasks.presentation.tasks_list.TasksListViewModel
 import com.example.core.data.auth.AuthStorageEncryptedSharedPrefsImpl
 import com.example.core.data.networking.HttpClientFactory
+import com.example.core.domain.DailyNotificationScheduler
 import com.example.londoncaptask.MainViewModel
 import com.example.londoncaptask.MyApp
 import com.example.tasks.data.FetchTasksWorker
 import com.example.tasks.data.OfflineFirstTaskRepository
+import com.example.tasks.data.TaskSyncSchedulerWorkManagerImpl
 import com.example.tasks.data.local.RoomLocalTaskDataSourceImpl
 import com.example.tasks.data.local.db.TaskDb
 import com.example.tasks.data.local.db.TasksDao
@@ -23,6 +27,7 @@ import com.example.tasks.data.remote.KtorRemoteDataSourceImpl
 import com.example.tasks.domain.LocalTasksDataSource
 import com.example.tasks.domain.RemoteTasksDataSource
 import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.TaskSyncScheduler
 import com.example.tasks.presentation.upsert_tasks.UpsertTaskViewModel
 import kotlinx.coroutines.CoroutineScope
 import org.koin.android.ext.koin.androidApplication
@@ -49,6 +54,9 @@ val appModule = module {
     singleOf(::AuthRepositoryKtorImpl).bind<AuthRepository>()
     singleOf(::OfflineFirstTaskRepository).bind<TaskRepository>()
     singleOf(::RoomLocalTaskDataSourceImpl).bind<LocalTasksDataSource>()
+    singleOf(::KtorRemoteDataSourceImpl).bind<RemoteTasksDataSource>()
+    singleOf(::DailyNotificationWorkManagerImpl).bind<DailyNotificationScheduler>()
+    singleOf(::TaskSyncSchedulerWorkManagerImpl).bind<TaskSyncScheduler>()
     singleOf(::KtorRemoteDataSourceImpl).bind<RemoteTasksDataSource>()
 
     singleOf(::HttpClientFactory)
@@ -89,4 +97,5 @@ val appModule = module {
     }
 
     workerOf(::FetchTasksWorker)
+    workerOf(::DailyNotificationWorker)
 }
