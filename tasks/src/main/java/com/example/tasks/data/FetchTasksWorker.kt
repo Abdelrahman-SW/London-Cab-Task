@@ -30,6 +30,7 @@ class FetchTasksWorker(
                     DataError.Network.SERVER_ERROR -> Result.retry()
                     DataError.Network.SERIALIZATION -> Result.failure()
                     DataError.Network.UNKNOWN -> Result.failure()
+                    DataError.Network.EXCEED_REQUEST_LIMIT -> Result.retry()
                 }
             }
 
