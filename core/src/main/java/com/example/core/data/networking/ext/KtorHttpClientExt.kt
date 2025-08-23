@@ -1,6 +1,7 @@
 package com.example.core.data.networking.ext
 
 import com.example.core.BuildConfig
+import com.example.core.data.networking.RateLimiter
 import com.example.core.domain.util.DataError
 import io.ktor.client.HttpClient
 import io.ktor.client.request.delete
@@ -57,6 +58,9 @@ suspend inline fun <reified Response : Any> HttpClient.delete(
 }
 
 suspend inline fun <reified T> safeCall(execute: () -> HttpResponse): Result<T, DataError.Network> {
+    if (!RateLimiter.canRequest()) {
+        return Result.Error(DataError.Network.EXCEED_REQUEST_LIMIT)
+    }
     val response = try {
         execute()
     } catch (e: UnresolvedAddressException) {

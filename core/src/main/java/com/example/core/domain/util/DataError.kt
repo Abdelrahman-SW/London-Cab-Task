@@ -11,6 +11,7 @@ sealed interface DataError: Error {
         PAYLOAD_TOO_LARGE,
         SERVER_ERROR,
         SERIALIZATION,
+        EXCEED_REQUEST_LIMIT,
         UNKNOWN
     }
 
