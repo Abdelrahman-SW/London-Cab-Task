@@ -23,6 +23,7 @@ import com.example.tasks.data.TaskSyncSchedulerWorkManagerImpl
 import com.example.tasks.data.local.RoomLocalTaskDataSourceImpl
 import com.example.tasks.data.local.db.TaskDb
 import com.example.tasks.data.local.db.TasksDao
+import com.example.tasks.data.local.db.migrations.MIGRATION_1_2
 import com.example.tasks.data.remote.KtorRemoteDataSourceImpl
 import com.example.tasks.domain.LocalTasksDataSource
 import com.example.tasks.domain.RemoteTasksDataSource
@@ -89,7 +90,7 @@ val appModule = module {
             androidApplication(),
             TaskDb::class.java,
             "tasks.db"
-        ).build()
+        ).addMigrations(MIGRATION_1_2).build()
     }
 
     single<TasksDao> {
