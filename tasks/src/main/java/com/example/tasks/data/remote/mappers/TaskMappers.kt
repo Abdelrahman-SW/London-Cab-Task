@@ -5,6 +5,7 @@ import com.example.tasks.domain.models.Task
 
 fun TaskDto.toTask(): Task {
     return Task(
+        id = id,
         description = description,
         timeStamp = timeStamp
     )

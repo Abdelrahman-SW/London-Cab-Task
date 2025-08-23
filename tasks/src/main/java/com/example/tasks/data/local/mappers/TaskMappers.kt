@@ -5,13 +5,17 @@ import com.example.tasks.domain.models.Task
 
 fun Task.toTaskEntity(): TaskEntity {
     return TaskEntity(
-        description = description
+        id = id,
+        description = description,
+        timeStamp = timeStamp
     )
 }
 
 
 fun TaskEntity.toTask(): Task {
     return Task(
-        description = description
+        id = id,
+        description = description,
+        timeStamp = timeStamp
     )
 }
