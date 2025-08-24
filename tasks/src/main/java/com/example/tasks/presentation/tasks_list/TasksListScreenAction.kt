@@ -4,4 +4,5 @@ sealed interface TasksListScreenAction {
     data class OnTaskClicked(val taskId : Int) : TasksListScreenAction
     data object OnAddNewTaskClicked : TasksListScreenAction
     data object OnPullToRefresh : TasksListScreenAction
+    data object onLogoutClicked : TasksListScreenAction
 }

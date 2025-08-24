@@ -20,8 +20,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.core.presentation.util.ObserveAsEvents
 import com.example.core.presentation.util.ext.showToast
 import org.koin.androidx.compose.koinViewModel
@@ -57,11 +59,13 @@ fun LoginScreen(
     loginScreenState: LoginScreenState,
     onAction: (LoginScreenAction) -> Unit
 ) {
-    Box (
+    Box(
 
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(all = 24.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(all = 24.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -104,13 +108,24 @@ fun LoginScreen(
             Spacer(Modifier.weight(1f))
 
             Button(
-                modifier = Modifier.fillMaxWidth().height(56.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(56.dp),
                 onClick = {
                     onAction(LoginScreenAction.OnLoginClicked)
                 }
             ) {
                 Text("Login")
             }
+
+            Spacer(Modifier.height(16.dp))
+
+            Text(
+                "This App Was Created As An Assessment To London Cab \n @Created by : Abdelrahman Khaled - 2025",
+                textAlign = TextAlign.Center,
+                fontSize = 10.sp
+            )
+
         }
 
         if (loginScreenState.isLogging) {

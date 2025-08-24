@@ -20,7 +20,9 @@ class AnalyticsActivity : ComponentActivity() {
         setContent {
             LondonCapTaskTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AnalyticsScreen(Modifier.padding(innerPadding))
+                    AnalyticsScreen(Modifier.padding(innerPadding), onBackClicked = {
+                        finish()
+                    })
                 }
             }
         }

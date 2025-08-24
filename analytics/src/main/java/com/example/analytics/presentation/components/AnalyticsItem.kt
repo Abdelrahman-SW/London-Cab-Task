@@ -1,7 +1,6 @@
-package com.example.tasks.presentation.tasks_list.components
+package com.example.analytics.presentation.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,19 +19,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.tasks.domain.models.Task
 
 @Composable
-fun TaskItem(
-    task: Task,
-    onTaskClicked: (Task) -> Unit,
+fun AnalyticsItem(
+    text: String,
     modifier: Modifier = Modifier
 ) {
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16.dp))
-            .clickable { onTaskClicked(task) },
+            .clip(RoundedCornerShape(16.dp)),
         color = Color.Black.copy(alpha = 0.4f),
         tonalElevation = 4.dp,
         shadowElevation = 6.dp
@@ -47,14 +43,14 @@ fun TaskItem(
                 modifier = Modifier
                     .size(12.dp)
                     .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.primary)
+                    .background(Color.Yellow.copy(alpha = 0.8f))
             )
 
             Spacer(modifier = Modifier.width(12.dp))
 
             // Task description
             Text(
-                text = task.description,
+                text = text,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
