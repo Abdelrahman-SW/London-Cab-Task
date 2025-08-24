@@ -223,7 +223,7 @@ Run on emulator or device.
 
 <br></br>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/4947fab2-7f73-4016-b5fb-9e33d40d07d9" width="360" height="720">
+  <img src="https://github.com/user-attachments/assets/6b1ec5c2-68ea-4116-bf46-39eaf2d3a65b" width="360" height="720">
 </p>
 <br></br>
 
