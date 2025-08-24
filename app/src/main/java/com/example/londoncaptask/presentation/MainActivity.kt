@@ -140,6 +140,13 @@ class MainActivity : ComponentActivity() {
                                     },
                                     onOpenAnalyticsPageButtonClicked = {
                                         installOrStartAnalyticsFeature()
+                                    },
+                                    afterLogout = {
+                                        navController.navigate("Login") {
+                                            popUpTo("Tasks") {
+                                                inclusive = true
+                                            }
+                                        }
                                     }
                                 )
                             }
@@ -151,6 +158,9 @@ class MainActivity : ComponentActivity() {
                                 // val id = backStackEntry.arguments?.getInt("taskId") ?: -1
                                 UpsertTaskScreenRoot(
                                     onTaskUpserted = {
+                                        navController.navigateUp()
+                                    },
+                                    onBackClicked = {
                                         navController.navigateUp()
                                     }
                                 )
