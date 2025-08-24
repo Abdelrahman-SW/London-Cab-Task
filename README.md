@@ -27,7 +27,79 @@ This project is designed as a example that demonstrates architecture, modulariza
 
 🎨 Built with Jetpack Compose for UI
 
-<h2 align="left">🏗️ Architecture & Tech Stack</h2>
+<h2 align="left">🏗️ Architecture</h2>
+
+The code Is Splitted By Features so each Feature in the code has it`s own Module 
+then inside each feature Module the code is packaged by 3 different layers : presentation,domain,data and the di for dependency Injection , so what is the benefit of that
+and why this considered as a clean arch code lets talk about this in next section.
+
+
+<h2>Splitting Android Code into Presentation, Domain, and Data Layers: Benefits and Best Practices</h2>
+
+<p>In Android development, organizing your code into distinct layers—Presentation, Domain, and Data—is a powerful architectural strategy. This separation of concerns improves code maintainability, testability, and scalability. Let's explore each layer and the benefits of this approach.</p>
+
+<h3>1. Presentation Layer</h3>
+<p><strong>Description:</strong><br>
+The Presentation layer is responsible for displaying data to the user and handling user interactions. It typically includes Activities, Fragments, Views, and ViewModels in MVVM architecture.</p>
+
+<p><strong>Responsibilities:</strong></p>
+<ul>
+  <li>Managing UI components and rendering data.</li>
+  <li>Handling user inputs and updating the UI accordingly.</li>
+  <li>Communicating with the ViewModel to fetch or send data.</li>
+</ul>
+
+<h3>2. Domain Layer</h3>
+<p><strong>Description:</strong><br>
+The Domain layer contains the business logic of the application. It is independent of any other layers, making it easy to test and reuse.</p>
+
+<p><strong>Responsibilities:</strong></p>
+<ul>
+  <li>Encapsulating the core business logic.</li>
+  <li>Defining use cases or interactors that represent specific business actions.</li>
+  <li>Providing a clear API for the Presentation layer.</li>
+</ul>
+
+<h3>3. Data Layer</h3>
+<p><strong>Description:</strong><br>
+The Data layer is responsible for managing data sources. It includes repositories, data sources (remote and local), and data models. This layer abstracts the data operations from the rest of the application.</p>
+
+<p><strong>Responsibilities:</strong></p>
+<ul>
+  <li>Handling data operations, such as network requests, database queries, and caching.</li>
+  <li>Providing a unified data interface to the Domain layer.</li>
+  <li>Managing data models and mappings.</li>
+</ul>
+
+<h3>Benefits of Layered Architecture</h3>
+<p><strong>Separation of Concerns:</strong></p>
+<ul>
+  <li>Each layer has a distinct responsibility, making the code easier to understand, maintain, and extend.</li>
+</ul>
+
+<p><strong>Testability:</strong></p>
+<ul>
+  <li>Isolated layers allow for easier unit testing. For example, the Domain layer can be tested without dependencies on the Presentation or Data layers.</li>
+</ul>
+
+<p><strong>Reusability:</strong></p>
+<ul>
+  <li>Business logic encapsulated in the Domain layer can be reused across different parts of the application or even in different applications.</li>
+</ul>
+
+<p><strong>Maintainability:</strong></p>
+<ul>
+  <li>Changes in one layer (e.g., switching from a REST API to GraphQL in the Data layer) have minimal impact on other layers.</li>
+</ul>
+
+<p><strong>Scalability:</strong></p>
+<ul>
+  <li>The clear separation allows for easier scaling of the codebase. Different teams can work on different layers simultaneously without causing conflicts.</li>
+</ul>
+
+<br></br>
+
+<h2 align="left">🏗️ Tech Stack</h2>
 
 Language: Kotlin (with coroutines, sealed classes, extension functions)
 
