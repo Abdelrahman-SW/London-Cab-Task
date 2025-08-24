@@ -1,4 +1,4 @@
-package com.example.tasks.domain
+package com.example.tasks.domain.datasources
 
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result

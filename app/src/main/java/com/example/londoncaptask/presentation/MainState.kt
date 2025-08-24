@@ -1,4 +1,4 @@
-package com.example.londoncaptask
+package com.example.londoncaptask.presentation
 
 data class MainState(
     val isLoggedIn: Boolean = false,

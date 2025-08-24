@@ -6,7 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.core.domain.models.AuthInfo
-import com.example.auth.domain.AuthRepository
+import com.example.auth.domain.repo.AuthRepository
 import com.example.core.domain.AuthStorage
 import com.example.auth.domain.models.User
 import com.example.core.domain.util.DataError

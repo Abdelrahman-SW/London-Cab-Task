@@ -1,52 +1,50 @@
-package com.example.tasks.data
+package com.example.core.data.workmanager
 
 import android.content.Context
 import androidx.work.BackoffPolicy
-import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.await
-import com.example.tasks.domain.TaskSyncScheduler
+import com.example.core.domain.DailyNotificationScheduler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
 import kotlin.time.toJavaDuration
 
-class TaskSyncSchedulerWorkManagerImpl(
+class DailyNotificationSchedulerWorkManagerImpl(
     private val context: Context,
-) : TaskSyncScheduler {
+) : DailyNotificationScheduler {
 
     private val workManager = WorkManager.getInstance(context)
 
-    override suspend fun scheduleSyncingTask(duration: Duration) {
+    override suspend fun scheduleDailyNotification(duration: Duration) {
         val isSyncScheduled = withContext(Dispatchers.IO) {
             workManager
-                .getWorkInfosByTag(TaskSyncScheduler.TASK_SYNC_TAG).get().isNotEmpty()
+                .getWorkInfosByTag(DailyNotificationScheduler.DAILY_NOTIFICATION_TAG).get()
+                .isNotEmpty()
         }
         if (isSyncScheduled) return
-        val workRequest = PeriodicWorkRequestBuilder<FetchTasksWorker>(
+        val workRequest = PeriodicWorkRequestBuilder<DailyNotificationWorker>(
             repeatInterval = duration.toJavaDuration()
-        ).setConstraints(
-            androidx.work.Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED)
-                .build()
         )
             .setBackoffCriteria(
                 backoffPolicy = BackoffPolicy.EXPONENTIAL,
                 backoffDelay = 2000L,
-                timeUnit = java.util.concurrent.TimeUnit.MILLISECONDS
+                timeUnit = TimeUnit.MILLISECONDS
             )
             .setInitialDelay(
-                duration = 30,
-                timeUnit = java.util.concurrent.TimeUnit.MINUTES
+                duration = 15,
+                timeUnit = TimeUnit.MINUTES
             )
-            .addTag(TaskSyncScheduler.TASK_SYNC_TAG)
+            .addTag(DailyNotificationScheduler.DAILY_NOTIFICATION_TAG)
             .build()
         workManager.enqueue(workRequest).await()
     }
 
-    override suspend fun cancelSyncingTask() {
+    override suspend fun cancelDailyNotification() {
         WorkManager.getInstance(context = context)
-            .cancelAllWorkByTag(TaskSyncScheduler.TASK_SYNC_TAG).await()
+            .cancelAllWorkByTag(DailyNotificationScheduler.DAILY_NOTIFICATION_TAG).await()
     }
 
 }

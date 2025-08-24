@@ -1,4 +1,4 @@
-package com.example.londoncaptask
+package com.example.londoncaptask.presentation
 
 import android.Manifest
 import android.app.AlertDialog
@@ -42,9 +42,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.auth.presentation.LoginScreenRoot
 import com.example.core.presentation.designsystem.LondonCapTaskTheme
+import com.example.londoncaptask.R
 import com.example.tasks.presentation.tasks_list.TasksListScreenRoot
 import com.example.tasks.presentation.upsert_tasks.UpsertTaskScreenRoot
-import com.google.android.play.core.ktx.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest

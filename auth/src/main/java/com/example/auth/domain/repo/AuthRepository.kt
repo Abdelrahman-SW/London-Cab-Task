@@ -1,4 +1,4 @@
-package com.example.auth.domain
+package com.example.auth.domain.repo
 
 import com.example.auth.domain.models.User
 import com.example.core.domain.util.DataError

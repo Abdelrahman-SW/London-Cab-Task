@@ -5,29 +5,29 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.example.auth.data.AuthRepositoryKtorImpl
-import com.example.auth.domain.AuthRepository
+import com.example.auth.data.repo.AuthRepositoryKtorImpl
+import com.example.auth.domain.repo.AuthRepository
 import com.example.auth.presentation.LoginViewModel
-import com.example.core.data.DailyNotificationWorkManagerImpl
-import com.example.core.data.DailyNotificationWorker
+import com.example.core.data.workmanager.DailyNotificationSchedulerWorkManagerImpl
+import com.example.core.data.workmanager.DailyNotificationWorker
 import com.example.core.domain.AuthStorage
 import com.example.tasks.presentation.tasks_list.TasksListViewModel
 import com.example.core.data.auth.AuthStorageEncryptedSharedPrefsImpl
 import com.example.core.data.networking.HttpClientFactory
 import com.example.core.domain.DailyNotificationScheduler
-import com.example.londoncaptask.MainViewModel
+import com.example.londoncaptask.presentation.MainViewModel
 import com.example.londoncaptask.MyApp
-import com.example.tasks.data.FetchTasksWorker
-import com.example.tasks.data.OfflineFirstTaskRepository
-import com.example.tasks.data.TaskSyncSchedulerWorkManagerImpl
+import com.example.tasks.data.workmanager.FetchTasksWorker
+import com.example.tasks.data.repo.OfflineFirstTaskRepository
+import com.example.tasks.data.workmanager.TaskSyncSchedulerWorkManagerImpl
 import com.example.tasks.data.local.RoomLocalTaskDataSourceImpl
 import com.example.tasks.data.local.db.TaskDb
-import com.example.tasks.data.local.db.TasksDao
+import com.example.tasks.data.local.db.dao.TasksDao
 import com.example.tasks.data.local.db.migrations.MIGRATION_1_2
 import com.example.tasks.data.remote.KtorRemoteDataSourceImpl
-import com.example.tasks.domain.LocalTasksDataSource
-import com.example.tasks.domain.RemoteTasksDataSource
-import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.datasources.LocalTasksDataSource
+import com.example.tasks.domain.datasources.RemoteTasksDataSource
+import com.example.tasks.domain.repo.TaskRepository
 import com.example.tasks.domain.TaskSyncScheduler
 import com.example.tasks.presentation.upsert_tasks.UpsertTaskViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -56,7 +56,7 @@ val appModule = module {
     singleOf(::OfflineFirstTaskRepository).bind<TaskRepository>()
     singleOf(::RoomLocalTaskDataSourceImpl).bind<LocalTasksDataSource>()
     singleOf(::KtorRemoteDataSourceImpl).bind<RemoteTasksDataSource>()
-    singleOf(::DailyNotificationWorkManagerImpl).bind<DailyNotificationScheduler>()
+    singleOf(::DailyNotificationSchedulerWorkManagerImpl).bind<DailyNotificationScheduler>()
     singleOf(::TaskSyncSchedulerWorkManagerImpl).bind<TaskSyncScheduler>()
     singleOf(::KtorRemoteDataSourceImpl).bind<RemoteTasksDataSource>()
 

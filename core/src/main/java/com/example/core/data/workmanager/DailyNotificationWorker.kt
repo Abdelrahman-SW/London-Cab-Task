@@ -1,5 +1,6 @@
-package com.example.core.data
+package com.example.core.data.workmanager
 
+import android.R
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -36,7 +37,7 @@ class DailyNotificationWorker(
         }
 
         val notification = NotificationCompat.Builder(applicationContext, channelId)
-            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setSmallIcon(R.drawable.ic_popup_reminder)
             .setContentTitle("Hey !")
             .setContentText("Do You Want To Create Some Tasks ?")
             .setPriority(NotificationCompat.PRIORITY_HIGH)

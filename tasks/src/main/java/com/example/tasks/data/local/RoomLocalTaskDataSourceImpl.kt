@@ -3,10 +3,10 @@ package com.example.tasks.data.local
 import android.database.sqlite.SQLiteFullException
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
-import com.example.tasks.data.local.db.TasksDao
+import com.example.tasks.data.local.db.dao.TasksDao
 import com.example.tasks.data.local.mappers.toTask
 import com.example.tasks.data.local.mappers.toTaskEntity
-import com.example.tasks.domain.LocalTasksDataSource
+import com.example.tasks.domain.datasources.LocalTasksDataSource
 import com.example.tasks.domain.models.Task
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
