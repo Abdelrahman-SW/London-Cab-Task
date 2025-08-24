@@ -30,6 +30,22 @@ android {
         }
     }
 
+    flavorDimensions += "mode"
+
+    productFlavors {
+        create("free") {
+            dimension = "mode"
+            applicationIdSuffix = ".free"
+            versionNameSuffix = "-free"
+        }
+
+        create("paid") {
+            dimension = "mode"
+            applicationIdSuffix = ".paid"
+            versionNameSuffix = "-paid"
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

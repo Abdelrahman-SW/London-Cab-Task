@@ -40,7 +40,8 @@ class TaskListScreenTest {
                                 timeStamp = System.currentTimeMillis()
                             )
                         )
-                    )
+                    ),
+                    afterLogout = {}
                 )
             }
         }

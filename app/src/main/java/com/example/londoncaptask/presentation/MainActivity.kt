@@ -49,6 +49,7 @@ import com.google.android.play.core.splitinstall.SplitInstallManager
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
+import londoncaptask.showAnalyticsFeature
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
@@ -147,7 +148,8 @@ class MainActivity : ComponentActivity() {
                                                 inclusive = true
                                             }
                                         }
-                                    }
+                                    },
+                                    showAnalyticsFeature = showAnalyticsFeature
                                 )
                             }
 

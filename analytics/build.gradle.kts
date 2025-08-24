@@ -12,6 +12,19 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions += "mode"
+
+
+    productFlavors {
+        create("free") {
+            dimension = "mode"
+        }
+
+        create("paid") {
+            dimension = "mode"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false

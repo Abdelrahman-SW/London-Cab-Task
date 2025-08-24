@@ -57,7 +57,8 @@ fun TasksListScreenRoot(
     onNavigateToUpsertTask: (Int) -> Unit,
     taskListViewModel: TasksListViewModel = koinViewModel(),
     onOpenAnalyticsPageButtonClicked: () -> Unit,
-    afterLogout: () -> Unit
+    afterLogout: () -> Unit,
+    showAnalyticsFeature : Boolean = true
 ) {
     val context = LocalContext.current
 
@@ -80,7 +81,8 @@ fun TasksListScreenRoot(
         modifier = modifier,
         tasksListScreenState = taskListViewModel.state,
         onAction = taskListViewModel::onAction,
-        onOpenAnalyticsPageButtonClicked = onOpenAnalyticsPageButtonClicked
+        onOpenAnalyticsPageButtonClicked = onOpenAnalyticsPageButtonClicked,
+        showAnalyticsFeature = showAnalyticsFeature
     )
 }
 
@@ -90,7 +92,8 @@ fun TaskListScreen(
     modifier: Modifier = Modifier,
     tasksListScreenState: TasksListScreenState,
     onAction: (TasksListScreenAction) -> Unit,
-    onOpenAnalyticsPageButtonClicked: () -> Unit
+    onOpenAnalyticsPageButtonClicked: () -> Unit,
+    showAnalyticsFeature : Boolean = false
 ) {
 
     var expanded by rememberSaveable { mutableStateOf(false) }
@@ -117,13 +120,15 @@ fun TaskListScreen(
                         expanded = expanded,
                         onDismissRequest = { expanded = false }
                     ) {
-                        DropdownMenuItem(
-                            text = { Text("Open Analytics Page") },
-                            onClick = {
-                                onOpenAnalyticsPageButtonClicked()
-                                expanded = false
-                            }
-                        )
+                        if (showAnalyticsFeature) {
+                            DropdownMenuItem(
+                                text = { Text("Open Analytics Page") },
+                                onClick = {
+                                    onOpenAnalyticsPageButtonClicked()
+                                    expanded = false
+                                }
+                            )
+                        }
 
                         DropdownMenuItem(
                             text = { Text("Logout") },
