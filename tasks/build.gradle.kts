@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
-
+    id ("app.cash.paparazzi") version "2.0.0-alpha02"
 }
 
 android {
@@ -79,7 +79,7 @@ dependencies {
     testImplementation(libs.io.mockk)
     testImplementation(libs.google.truth)
     testImplementation(libs.kotlinx.coroutines.test)
-
+    testImplementation(libs.paparazzi)
 
     //for instrumented testing :
     androidTestImplementation(libs.androidx.junit)
