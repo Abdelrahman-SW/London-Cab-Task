@@ -5,6 +5,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
+import com.example.auth.data.LogoutAuthImpl
 import com.example.auth.data.repo.AuthRepositoryKtorImpl
 import com.example.auth.domain.repo.AuthRepository
 import com.example.auth.presentation.LoginViewModel
@@ -15,6 +16,7 @@ import com.example.tasks.presentation.tasks_list.TasksListViewModel
 import com.example.core.data.auth.AuthStorageEncryptedSharedPrefsImpl
 import com.example.core.data.networking.HttpClientFactory
 import com.example.core.domain.DailyNotificationScheduler
+import com.example.core.domain.LogoutAuth
 import com.example.londoncaptask.presentation.MainViewModel
 import com.example.londoncaptask.MyApp
 import com.example.tasks.data.workmanager.FetchTasksWorker
@@ -59,6 +61,7 @@ val appModule = module {
     singleOf(::DailyNotificationSchedulerWorkManagerImpl).bind<DailyNotificationScheduler>()
     singleOf(::TaskSyncSchedulerWorkManagerImpl).bind<TaskSyncScheduler>()
     singleOf(::KtorRemoteDataSourceImpl).bind<RemoteTasksDataSource>()
+    singleOf(::LogoutAuthImpl).bind<LogoutAuth>()
 
     singleOf(::HttpClientFactory)
 

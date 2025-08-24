@@ -6,6 +6,7 @@ import com.example.auth.data.mappers.toUser
 import com.example.auth.domain.repo.AuthRepository
 import com.example.auth.domain.models.User
 import com.example.core.data.networking.ext.post
+import com.example.core.domain.AuthStorage
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.domain.util.map
@@ -14,6 +15,7 @@ import kotlinx.coroutines.delay
 
 class AuthRepositoryKtorImpl(
     private val client: HttpClient,
+    private val authStorage: AuthStorage
 ) : AuthRepository {
     override suspend fun login(
         username: String,
@@ -28,6 +30,7 @@ class AuthRepositoryKtorImpl(
     override suspend fun logout(): Result<Unit, DataError.Network> {
         // assume that we hit the server to logout and it respond with success
         delay(500L)
+        authStorage.set(null)
         return Result.Success(Unit)
     }
 

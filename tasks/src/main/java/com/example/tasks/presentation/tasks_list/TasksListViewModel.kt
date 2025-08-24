@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.core.domain.LogoutAuth
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.presentation.util.asUiText
@@ -20,7 +21,8 @@ import kotlin.time.Duration.Companion.minutes
 
 class TasksListViewModel(
     private val taskRepository: TaskRepository,
-    private val taskSyncScheduler: TaskSyncScheduler
+    private val taskSyncScheduler: TaskSyncScheduler,
+    private val logoutAuth: LogoutAuth
 ) : ViewModel() {
 
     var state by mutableStateOf(TasksListScreenState())
@@ -50,7 +52,8 @@ class TasksListViewModel(
     fun fetchTasks() {
         state = state.copy(isRefreshing = true)
         viewModelScope.launch {
-            delay(3000L)
+            // delay the fetching so i can disconnect internet before get the updated data
+            delay(2000L)
             val result = taskRepository.fetchTasks()
             when (result) {
                 is Result.Error<DataError> -> {
@@ -78,6 +81,13 @@ class TasksListViewModel(
 
             TasksListScreenAction.OnPullToRefresh -> {
                 fetchTasks()
+            }
+
+            TasksListScreenAction.onLogoutClicked -> {
+                viewModelScope.launch {
+                    logoutAuth.logout()
+                    _events.trySend(TasksListScreenEvent.AfterLogout)
+                }
             }
         }
     }
