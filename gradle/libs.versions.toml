@@ -29,6 +29,9 @@ uiTestManifest = "1.9.0"
 workRuntimeKtx = "2.10.3"
 playFeatureDelivery = "2.1.0"
 
+ktlint-version = "13.1.0"
+detekt-version = "1.23.8"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
@@ -87,6 +90,10 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+
+#ktlint
+ktlint = {id = "org.jlleitschuh.gradle.ktlint" , version.ref = "ktlint-version"}
+detekt = {id = "io.gitlab.arturbosch.detekt" , version.ref = "detekt-version"}
 
 #ksp for annotation processor
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

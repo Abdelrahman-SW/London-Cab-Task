@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 android {
@@ -27,6 +29,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -34,11 +37,19 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
     dynamicFeatures += setOf(":analytics")
 }
+
+detekt {
+    buildUponDefaultConfig = true // base on default rules
+    allRules = false              // don't enable unstable rules
+    config.from("$rootDir/config/detekt/detekt.yml") // custom rules
+}
+
 
 dependencies {
 
