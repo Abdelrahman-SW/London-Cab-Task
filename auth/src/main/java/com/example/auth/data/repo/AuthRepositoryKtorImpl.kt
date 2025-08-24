@@ -1,9 +1,9 @@
-package com.example.auth.data
+package com.example.auth.data.repo
 
 import com.example.auth.data.dto.LoginRequestBody
 import com.example.auth.data.dto.UserDto
 import com.example.auth.data.mappers.toUser
-import com.example.auth.domain.AuthRepository
+import com.example.auth.domain.repo.AuthRepository
 import com.example.auth.domain.models.User
 import com.example.core.data.networking.ext.post
 import com.example.core.domain.util.DataError

@@ -10,7 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.presentation.util.asUiText
-import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.repo.TaskRepository
 import com.example.tasks.domain.models.Task
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow

@@ -1,6 +1,6 @@
 package com.example.tasks.presentation.upsert_tasks
 
-import com.example.core.presentation.ui.UiText
+import com.example.core.presentation.util.UiText
 
 sealed interface UpsertTaskScreenEvent {
     data object OnTaskUpserted : UpsertTaskScreenEvent

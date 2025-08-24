@@ -2,7 +2,7 @@ package com.example.core.presentation.util.ext
 
 import android.content.Context
 import android.widget.Toast
-import com.example.core.presentation.ui.UiText
+import com.example.core.presentation.util.UiText
 
 fun Context.showToast(msg : UiText) {
     val msgAsString = msg.asString(this)

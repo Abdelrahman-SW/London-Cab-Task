@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.presentation.util.asUiText
-import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.repo.TaskRepository
 import com.example.tasks.domain.TaskSyncScheduler
 import com.example.tasks.presentation.tasks_list.TasksListScreenEvent.*
 import kotlinx.coroutines.channels.Channel

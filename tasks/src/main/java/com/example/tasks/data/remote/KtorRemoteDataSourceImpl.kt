@@ -6,11 +6,10 @@ import com.example.core.domain.util.Result
 import com.example.core.domain.util.map
 import com.example.tasks.data.remote.dto.TaskDto
 import com.example.tasks.data.remote.mappers.toTask
-import com.example.tasks.domain.RemoteTasksDataSource
+import com.example.tasks.domain.datasources.RemoteTasksDataSource
 import com.example.tasks.domain.models.Task
 import io.ktor.client.HttpClient
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 
 class KtorRemoteDataSourceImpl(
     private val client: HttpClient,

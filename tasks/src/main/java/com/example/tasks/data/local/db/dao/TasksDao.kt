@@ -1,9 +1,9 @@
-package com.example.tasks.data.local.db
+package com.example.tasks.data.local.db.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import com.example.tasks.domain.models.Task
+import com.example.tasks.data.local.db.entities.TaskEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
