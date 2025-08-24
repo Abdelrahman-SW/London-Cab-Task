@@ -1,17 +1,15 @@
-package com.example.tasks.data
+package com.example.tasks.data.repo
 
 import com.example.core.domain.util.DataError
 import com.example.core.domain.util.Result
 import com.example.core.domain.util.map
-import com.example.tasks.domain.LocalTasksDataSource
-import com.example.tasks.domain.RemoteTasksDataSource
-import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.datasources.LocalTasksDataSource
+import com.example.tasks.domain.datasources.RemoteTasksDataSource
 import com.example.tasks.domain.models.Task
+import com.example.tasks.domain.repo.TaskRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class OfflineFirstTaskRepository(
     private val localTasksDataSource: LocalTasksDataSource,

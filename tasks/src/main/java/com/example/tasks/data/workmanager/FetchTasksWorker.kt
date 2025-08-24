@@ -1,10 +1,10 @@
-package com.example.tasks.data
+package com.example.tasks.data.workmanager
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.core.domain.util.DataError
-import com.example.tasks.domain.TaskRepository
+import com.example.tasks.domain.repo.TaskRepository
 
 class FetchTasksWorker(
     context: Context,
